@@ -1,0 +1,53 @@
+find_trending_companies:
+  description: >
+    Search the latest financial news and market discussions as of {current_date} to identify 
+    2-3 currently trending companies in the {sector} sector that are generating significant buzz.
+    Select only new companies that have not been previously identified in prior runs.
+  expected_output: >
+    A structured JSON list of 2-3 companies, each with:
+    - company_name: Full company name
+    - ticker: Stock ticker symbol (if publicly traded; use "N/A" if private)
+    - short_reason: 1-2 sentence explanation of why it is trending based on recent news as of {current_date}
+  agent: trending_company_finder
+  output_file: output/trending_companies.json
+  async_execution: false
+
+research_trending_companies:
+  description: >
+    For each trending company provided, conduct thorough online research using up-to-date sources
+    (financial metrics, recent news, competitive position, risks, growth drivers, and valuation)
+    and produce a comprehensive, balanced analysis report.
+  expected_output: >
+    A structured JSON report with an array of company analyses, each containing:
+    - company_name
+    - ticker
+    - overview
+    - financial_health
+    - recent_developments
+    - competitive_position
+    - risks_and_opportunities
+    - valuation_summary
+  agent: financial_researcher
+  context:
+    - find_trending_companies
+  output_file: output/research_report.json
+  async_execution: false
+
+pick_best_company:
+  description: >
+    Review the detailed research reports, select the single most compelling company for investment,
+    and provide clear, evidence-based reasoning.
+    First, state the chosen company and a one-sentence rationale suitable for a user notification.
+    Then deliver a full comparative report explaining the selection and why the other companies were not chosen.
+    Never select a company that has been chosen in previous runs.
+  expected_output: >
+    Markdown report structured as:
+    1. **Selected Company**: Name and ticker
+    2. **Notification Summary**: One-sentence investment rationale
+    3. **Detailed Investment Thesis**: In-depth reasoning for the selection
+    4. **Why Others Were Not Selected**: Comparative analysis of each alternative with specific reasons for rejection
+  agent: stock_picker
+  context:
+    - research_trending_companies
+  output_file: output/decision.md
+  async_execution: false
