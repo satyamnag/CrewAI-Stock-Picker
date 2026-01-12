@@ -1,54 +1,28 @@
-# CrewaiStockPicker Crew
+# 📈 CrewAI Stock Picker
+#### An automated multi-agent AI workflow that identifies trending companies, researches them, and selects the best investment opportunity using CrewAI, real-time search, and persistent memory.
 
-Welcome to the CrewaiStockPicker Crew project, powered by [crewAI](https://crewai.com). This template is designed to help you set up a multi-agent AI system with ease, leveraging the powerful and flexible framework provided by crewAI. Our goal is to enable your agents to collaborate effectively on complex tasks, maximizing their collective intelligence and capabilities.
+## 🚀 Features
+### - 🔍 Find Trending Companies in a chosen sector
+### - 📊 Deep Financial Research using structured analysis
+### - 🎯 Select Best Stock with investment thesis
+### - 🧠 Long-term & short-term memory to avoid repeats
+### - 📑 Outputs in JSON + Markdown
+### - 🔧 Modular YAML configuration
 
-## Installation
+## 🧠 Agent Workflow
+### 1. Trending Company Finder → discovers trending companies
+### 2. Financial Researcher → produces full structured reports
+### 3. Stock Picker → selects the best company + thesis
+### 4. Manager Agent → orchestrates the workflow
 
-Ensure you have Python >=3.10 <3.14 installed on your system. This project uses [UV](https://docs.astral.sh/uv/) for dependency management and package handling, offering a seamless setup and execution experience.
+## 📤 Output Files
+### /output/trending_companies.json: Found trending companies
+### /output/research_report.json: Analysis reports
+### /output/decision.md: Final selected stock
+### /memory/long_term_memory_storage.db: Persistent long-term memory database used by agents
 
-First, if you haven't already, install uv:
-
-```bash
-pip install uv
-```
-
-Next, navigate to your project directory and install the dependencies:
-
-(Optional) Lock the dependencies and install them by using the CLI command:
-```bash
-crewai install
-```
-### Customizing
-
-**Add your `OPENAI_API_KEY` into the `.env` file**
-
-- Modify `src/crewai_stock_picker/config/agents.yaml` to define your agents
-- Modify `src/crewai_stock_picker/config/tasks.yaml` to define your tasks
-- Modify `src/crewai_stock_picker/crew.py` to add your own logic, tools and specific args
-- Modify `src/crewai_stock_picker/main.py` to add custom inputs for your agents and tasks
-
-## Running the Project
-
-To kickstart your crew of AI agents and begin task execution, run this from the root folder of your project:
-
-```bash
-$ crewai run
-```
-
-This command initializes the crewai_stock_picker Crew, assembling the agents and assigning them tasks as defined in your configuration.
-
-This example, unmodified, will run the create a `report.md` file with the output of a research on LLMs in the root folder.
-
-## Understanding Your Crew
-
-The crewai_stock_picker Crew is composed of multiple AI agents, each with unique roles, goals, and tools. These agents collaborate on a series of tasks, defined in `config/tasks.yaml`, leveraging their collective skills to achieve complex objectives. The `config/agents.yaml` file outlines the capabilities and configurations of each agent in your crew.
-
-## Support
-
-For support, questions, or feedback regarding the CrewaiStockPicker Crew or crewAI.
-- Visit our [documentation](https://docs.crewai.com)
-- Reach out to us through our [GitHub repository](https://github.com/joaomdmoura/crewai)
-- [Join our Discord](https://discord.com/invite/X4JWnZnxPb)
-- [Chat with our docs](https://chatg.pt/DWjSBZn)
-
-Let's create wonders together with the power and simplicity of crewAI.
+## 🔐 Environment Variables
+#### OPENAI_API_KEY=your openai api key
+#### PUSHOVER_USER=your pushover user ID
+#### PUSHOVER_TOKEN=your pushover token
+#### SERPER_API_KEY=your serper api key
